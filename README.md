@@ -33,4 +33,76 @@ query {
     username
     thoughtText
   }
-} -->
+} 
+
+mutation addFriend($friendId: ID!) {
+  addFriend(friendId: $friendId) {
+    _id
+    username
+    friendCount
+    friends {
+      _id
+      username
+    }
+  }
+}
+
+
+mutation addReaction($thoughtId: ID!, $reactionBody: String!) {
+  addReaction(thoughtId: $thoughtId, reactionBody: $reactionBody) {
+    _id
+    reactionCount
+    reactions {
+      _id
+      reactionBody
+      createdAt
+      username
+    }
+  }
+}
+
+{
+  "thoughtId": "6253112af46a080e6f90dc9a",
+  "reactionBody": "I agree!"
+}
+
+mutation addThought($thoughtText: String!) {
+  addThought(thoughtText: $thoughtText) {
+    _id
+    thoughtText
+    createdAt
+    username
+    reactionCount
+  }
+}
+
+{
+  "thoughtText": "I think GraphQL is pretty cool."
+}
+
+{
+  me {
+    thoughts {
+      _id
+      thoughtText
+    }
+  }
+}
+
+mutation login($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    token
+    user {
+      _id
+    }
+  }
+}
+
+{
+        "_id": "62530b403468750d6c769047",
+        "username": "greg",
+        "email": "greg@test.com",
+        "password": "greg12345"
+      
+}
+-->
